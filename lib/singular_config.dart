@@ -27,7 +27,7 @@ class SingularConfig {
   bool collectOAID = false;
   bool enableLogging = false;
   ShortLinkCallback ? shortLinkCallback;
-
+  List<String>? supportedDomains;
 
 
   SingularConfig(this._apiKey, this._secretKey) {
@@ -101,6 +101,11 @@ class SingularConfig {
     configMap['sessionTimeout'] = sessionTimeout;
     configMap['collectOAID'] = collectOAID;
     configMap['enableLogging'] = enableLogging;
+    
+    if(supportedDomains != null) {
+       configMap['supportedDomains'] = supportedDomains;
+    }
+    
     return configMap;
   }
   void setShortLinkCallback(ShortLinkCallback shortLinkCallback){
