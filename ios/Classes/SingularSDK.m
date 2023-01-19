@@ -159,6 +159,7 @@ static NSDictionary *configDict;
     };
        
     NSArray *supportedDomains = configDict[@"supportedDomains"];
+    NSLog(@"supportedDomains %@", supportedDomains);
     if (supportedDomains) {
        config.supportedDomains = supportedDomains;
     }
