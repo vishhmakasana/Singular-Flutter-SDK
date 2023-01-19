@@ -95,6 +95,7 @@ static NSDictionary *configDict;
     int waitForTrackingAuthorizationWithTimeoutInterval = [configDict[@"waitForTrackingAuthorizationWithTimeoutInterval"] intValue];
     float shortLinkResolveTimeOut = [configDict[@"shortLinkResolveTimeOut"] floatValue];
     NSString *customUserId = configDict[@"customUserId"];
+   
 
     SingularConfig* config = [[SingularConfig alloc] initWithApiKey:apiKey andSecret:secretKey];
     config.skAdNetworkEnabled = skAdNetworkEnabled;
@@ -102,6 +103,7 @@ static NSDictionary *configDict;
     config.manualSkanConversionManagement = manualSkanConversionManagement;
     config.waitForTrackingAuthorizationWithTimeoutInterval = waitForTrackingAuthorizationWithTimeoutInterval;
     config.shortLinkResolveTimeOut = shortLinkResolveTimeOut;
+
 
     if (customUserId) {
        [Singular setCustomUserId:customUserId];
@@ -155,6 +157,12 @@ static NSDictionary *configDict;
             [channel invokeMethod:@"conversionValuesUpdatedCallbackName" arguments:updatedConversionValues];
         }
     };
+       
+    NSArray *supportedDomains = configDict[@"supportedDomains"];
+    if (supportedDomains) {
+       config.supportedDomains = supportedDomains;
+    }
+    
     [Singular start:config];
 }
 
